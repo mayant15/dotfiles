@@ -41,6 +41,7 @@ if executable('rg')
     " Use rg over grep
 "    set grepprg=rg\ --vimgrep\ --no-heading
 "    set grepformat=%f:%l:%c:%m,%f,%l,%m
+
     let g:ackprg = 'rg --vimgrep --smart-case --no-heading'
     let g:ack_autoclose = 1
     cnoreabbrev Ack Ack!
