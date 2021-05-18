@@ -12,7 +12,7 @@ Plugin 'joshdick/onedark.vim'
 Plugin 'jiangmiao/auto-pairs'
 " Plugin 'dense-analysis/ale'
 Plugin 'bling/vim-bufferline'
-"Plugin 'preservim/nerdtree'
+Plugin 'preservim/nerdtree'
 Plugin 'preservim/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
@@ -56,15 +56,35 @@ endif
 " set foldlevel=99
 
 " OneDark theme
+if (has("termguicolors"))
+    set termguicolors
+endif
+
+let g:onedark_terminal_italics=1
+
 syntax on
 colorscheme onedark
 
+" Line numbers
 set number relativenumber
 set showmatch
 set comments=sl:/*,mb:\ *,elx:\ */
 
 " Switch between header and source files with F4
 " map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
+" NERDTree
+let NERDTreeShowHidden=1
+
+" Start NERDTree when Vim starts with a directory argument.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+
 
 " lightline
 set laststatus=2
@@ -101,6 +121,8 @@ noremap <Left> <Nop>
 " let g:ale_linters = {'rust': ['analyzer']}
 
 " YouCompleteMe
+set completeopt=popup,preview,menuone
+
 let g:ycm_language_server =
             \ [
             \   {
