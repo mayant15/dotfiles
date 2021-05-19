@@ -7,6 +7,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'itchyny/lightline.vim'
+Plugin 'itchyny/vim-gitbranch'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'joshdick/onedark.vim'
 Plugin 'jiangmiao/auto-pairs'
@@ -74,8 +75,8 @@ set comments=sl:/*,mb:\ *,elx:\ */
 " map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 " NERDTree
-let NERDTreeShowHidden=1
-
+let g:NERDTreeShowHidden=1
+let g:NERDTreeWinPos="right"
 " Start NERDTree when Vim starts with a directory argument.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
@@ -85,6 +86,8 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
 
+" Tagbar position
+let g:tagbar_position="topleft vertical"
 
 " lightline
 set laststatus=2
@@ -93,10 +96,11 @@ set noshowmode
 let g:lightline = {
             \ 'colorscheme': 'onedark',
             \ 'active': {
-            \ 'left' : [['mode', 'paste'], ['readonly', 'filename', 'modified']],
+            \ 'left' : [['mode', 'paste'], ['gitbranch', 'readonly', 'filename', 'modified']],
             \ 'right': [['lineinfo'], ['percent'], ['breadcrumb', 'fileformat', 'fileencoding', 'filetype']],
             \ },
             \ 'component_function': {
+                \ 'gitbranch': 'gitbranch#name',
                 \ 'filename': 'LightlineFilename',
                 \ 'breadcrumb': 'LightlineBreadcrumb'
             \ },
