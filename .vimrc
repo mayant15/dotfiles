@@ -7,8 +7,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'itchyny/lightline.vim'
-Plugin 'itchyny/vim-gitbranch'
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'itchyny/vim-gitbranch'
+"Plugin 'airblade/vim-gitgutter'
 Plugin 'joshdick/onedark.vim'
 Plugin 'jiangmiao/auto-pairs'
 " Plugin 'dense-analysis/ale'
@@ -22,7 +22,10 @@ Plugin 'ycm-core/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
 
-" Text settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Text 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set enc=utf-8
 set fenc=utf-8
 set termencoding=utf-8
@@ -36,13 +39,15 @@ set expandtab
 
 set textwidth=120
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Text 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Search
 set hlsearch
 if executable('rg')
     " Use rg over grep
-"    set grepprg=rg\ --vimgrep\ --no-heading
-"    set grepformat=%f:%l:%c:%m,%f,%l,%m
-
     let g:ackprg = 'rg --vimgrep --smart-case --no-heading'
     let g:ack_autoclose = 1
     cnoreabbrev Ack Ack!
@@ -52,9 +57,18 @@ if executable('rg')
 endif
 
 
-" Code folding
-" set foldmethod=syntax
-" set foldlevel=99
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Appearance
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Cursor shapes
+" 2 -> Solid block
+" 6 -> Solid vertical bar
+let &t_EI = "\e[2 q"
+let &t_SI = "\e[6 q"
+
+" Highlight current line
+set cul
 
 " OneDark theme
 if (has("termguicolors"))
@@ -66,25 +80,44 @@ let g:onedark_terminal_italics=1
 syntax on
 colorscheme onedark
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mobility 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Line numbers
 set number relativenumber
 set showmatch
-set comments=sl:/*,mb:\ *,elx:\ */
 
-" Switch between header and source files with F4
-" map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+" Buffer movement
+nnoremap <leader>h :bp<CR>
+nnoremap <leader>l :bn<CR>
+
+" Mouse scroll
+set mouse=a
+
+
+" Don't use arrow keys you scum
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Right> <Nop>
+noremap <Left> <Nop>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Information 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " NERDTree
 let g:NERDTreeShowHidden=1
 let g:NERDTreeWinPos="right"
+
 " Start NERDTree when Vim starts with a directory argument.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
     \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
 " Exit Vim if NERDTree is the only window left.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-    \ quit | endif
+" autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+"    \ quit | endif
 
 " Tagbar position
 let g:tagbar_position="topleft vertical"
@@ -100,7 +133,6 @@ let g:lightline = {
             \ 'right': [['lineinfo'], ['percent'], ['breadcrumb', 'fileformat', 'fileencoding', 'filetype']],
             \ },
             \ 'component_function': {
-                \ 'gitbranch': 'gitbranch#name',
                 \ 'filename': 'LightlineFilename',
                 \ 'breadcrumb': 'LightlineBreadcrumb'
             \ },
@@ -114,32 +146,13 @@ function! LightlineBreadcrumb()
     return tagbar#currenttag('%s', '', 'f')
 endfunction
 
-" Don't use arrow keys you scum
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Right> <Nop>
-noremap <Left> <Nop>
-
-" Ale
-" let g:ale_sign_column_always=1
-" let g:ale_linters = {'rust': ['analyzer']}
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Completion and linting 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " YouCompleteMe
 set completeopt=popup,preview,menuone
 
-let g:ycm_language_server =
-            \ [
-            \   {
-            \       'name': 'rust',
-            \       'cmdline': ['rust-analyzer'],
-            \       'filetypes': ['rust'],
-            \       'project_root_files': ['Cargo.toml']
-            \   }
-            \ ]
-
 nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
 nnoremap <leader>gd :YcmCompleter GoTo<CR>
 
-" Buffer movement
-nnoremap <leader>h :bp<CR>
-nnoremap <leader>l :bn<CR>
