@@ -29,3 +29,6 @@ You must have Zsh installed. I'm using [prezto](https://github.com/sorin-ionescu
    theme for lightline
 1. Restart Vim `vim ~/.vimrc` and Ycm server `:YcmRestartServer`
 
+## Neovim
+I use when I'm working on Windows so this includes an `init.vim` as well. It requires [vim-plug](https://github.com/junegunn/vim-plug/) and [clangd](https://clangd.llvm.org/) to be installed. Start `nvim` with this `init.vim` and then run `:PlugInstall`.
+
