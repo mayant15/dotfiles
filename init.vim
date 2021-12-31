@@ -18,6 +18,7 @@ Plug 'hrsh7th/vim-vsnip'
 " Information
 Plug 'itchyny/lightline.vim'
 Plug 'akinsho/bufferline.nvim'
+Plug 'preservim/nerdtree'
 
 " Editing
 Plug 'windwp/nvim-autopairs'
@@ -96,6 +97,10 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" nerdtree
+let g:NERDTreeShowHidden=1
+let g:NERDTreeWinPos="right"
 
 " Autocompletion
 set completeopt=menu,menuone,preview
