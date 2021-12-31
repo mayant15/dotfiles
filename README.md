@@ -1,14 +1,26 @@
-# `.vimrc`
+# dotfiles
 
-This is my vim configuration.
+This is my zsh and vim configuration.
 
+## Usage
+Get all submodules with
+```bash
+git clone --recursive https://github.com/mayant15/dotfiles
+```
+Then run the provided install script
+```bash
+cd dotfiles
+source install.sh
+```
+This would create symlinks in your home directory to zsh and vim config files in this repo.
 
-## Instructions
+## Dependencies for Zsh
+You must have Zsh installed. I'm using [prezto](https://github.com/sorin-ionescu/prezto) for zsh configuration, which is provided as a submodule.
+
+## Dependencies for Vim
 
 1. Install [Vundle](https://github.com/VundleVim/Vundle.vim)
-1. Clone the repository
-1. Make a symlink to the vimrc in this repo `ln -s <path-to-the-repo>/.vimrc ~/.vimrc`
-1. Open Vim with `vim ~/.vimrc`
+1. After running the install script open Vim with `vim ~/.vimrc`
 1. Install plugins `:PluginInstall` and close Vim `:wqa`
 1. Install [Exuberant Ctags](https://sourceforge.net/projects/ctags/) for tags to work
 1. Install its prerequisites and compile [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe#installation) for
