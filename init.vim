@@ -22,6 +22,7 @@ Plug 'preservim/nerdtree'
 
 " Editing
 Plug 'windwp/nvim-autopairs'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 " Theme
 Plug 'joshdick/onedark.vim'
@@ -101,6 +102,18 @@ endfunction
 " nerdtree
 let g:NERDTreeShowHidden=1
 let g:NERDTreeWinPos="right"
+
+" fzf
+nnoremap <C-p> :FZF<CR>
+
+" Use ripgrep if available
+if executable('rg')
+    " Use rg for :grep
+    set grepprg=rg
+
+    " Use rg in fzf
+    let $FZF_DEFAULT_COMMAND = 'rg --files -S'
+endif
 
 " Autocompletion
 set completeopt=menu,menuone,preview
