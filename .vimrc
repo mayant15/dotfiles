@@ -18,6 +18,7 @@ Plugin 'preservim/nerdtree'
 "Plugin 'mileszs/ack.vim'
 Plugin 'junegunn/fzf'
 Plugin 'ycm-core/YouCompleteMe'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 filetype plugin indent on
@@ -142,11 +143,12 @@ set noshowmode
 let g:lightline = {
             \ 'colorscheme': 'onedark',
             \ 'active': {
-            \ 'left' : [['mode', 'paste'], ['gitbranch', 'readonly', 'filename', 'modified']],
+            \ 'left' : [['mode', 'paste'], ['gitinfo', 'readonly', 'filename', 'modified']],
             \ 'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']],
             \ },
             \ 'component_function': {
                 \ 'filename': 'LightlineFilename',
+                \ 'gitinfo': 'FugitiveStatusline'
             \ },
             \ }
 
@@ -163,4 +165,10 @@ set completeopt=popup,preview,menuone
 
 nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
 nnoremap <leader>gd :YcmCompleter GoTo<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Git commands
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nnoremap <leader>gs :vert G<CR>:vertical res 30<CR>
 
