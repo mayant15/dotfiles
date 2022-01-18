@@ -5,19 +5,20 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+
+" Appearance
 Plugin 'sheerun/vim-polyglot'
-Plugin 'itchyny/lightline.vim'
-"Plugin 'itchyny/vim-gitbranch'
-"Plugin 'airblade/vim-gitgutter'
 Plugin 'joshdick/onedark.vim'
+
+" Editing
 Plugin 'jiangmiao/auto-pairs'
-" Plugin 'dense-analysis/ale'
-Plugin 'bling/vim-bufferline'
-Plugin 'preservim/nerdtree'
-"Plugin 'preservim/tagbar'
-"Plugin 'mileszs/ack.vim'
 Plugin 'junegunn/fzf'
 Plugin 'ycm-core/YouCompleteMe'
+
+" Status and info
+Plugin 'itchyny/lightline.vim'
+Plugin 'bling/vim-bufferline'
+Plugin 'preservim/nerdtree'
 Plugin 'tpope/vim-fugitive'
 
 call vundle#end()

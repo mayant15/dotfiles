@@ -1,6 +1,7 @@
 " Neovim configuration
 " I use this on Windows because compiling the dependencies of my Vim config is
 " a pain
+"
 
 """" vim-plug """"
 call plug#begin(stdpath('data') . '/plugged')
@@ -14,18 +15,25 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'onsails/lspkind-nvim'
+
+" Language Support
+Plug 'simrat39/rust-tools.nvim'
 
 " Information
 Plug 'itchyny/lightline.vim'
-Plug 'akinsho/bufferline.nvim'
+Plug 'bling/vim-bufferline'
 Plug 'preservim/nerdtree'
+Plug 'tpope/vim-fugitive'
 
 " Editing
 Plug 'windwp/nvim-autopairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'alvan/vim-closetag'
 
 " Theme
 Plug 'joshdick/onedark.vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'sheerun/vim-polyglot'
 
 call plug#end()
@@ -72,16 +80,24 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
+" OneDark config
 let g:onedark_terminal_italics=1
 
+" Nord config
+let g:nord_italic = 1
+let g:nord_underline = 1
+
 syntax on
-colorscheme onedark
+colorscheme nord
 
 set laststatus=2
 set noshowmode
 
+" Keep some space in gutter for symbols
+set signcolumn=yes
+
 let g:lightline = {
-            \ 'colorscheme': 'onedark',
+            \ 'colorscheme': 'nord',
             \ 'active': {
             \ 'left' : [['mode', 'paste'], ['gitbranch', 'readonly', 'filename', 'modified']],
             \ 'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']],
@@ -118,22 +134,35 @@ endif
 " Autocompletion
 set completeopt=menu,menuone,preview
 
+" LSP mappings
+nnoremap <leader>gh :lua vim.lsp.buf.hover()<CR>
+nnoremap <leader>gd :lua vim.lsp.buf.implementation()<CR>
+nnoremap <leader>ga :lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
+nnoremap <C-]> :lua vim.lsp.buf.definition()<CR>
+
+" Rust
+nnoremap <leader>f :lua vim.lsp.buf.formatting_sync()<CR>
+
+" vim-fugitive
+nnoremap <leader>gs :vert G<CR>:vertical res 30<CR>
+
+" closetags
+let g:closetag_filenames = '*.tsx'
+let g:closetag_xhtml_filetypes = 'typescriptreact'
+
 lua <<EOF
-    require("nvim-autopairs").setup {}
+  require("rust-tools").setup {}
+  require("nvim-autopairs").setup {}
 
-    require("bufferline").setup {
-        options = {
-            numbers = function(opts)
-                return string.format('%s|%s', opts.id, opts.raise(opts.ordinal))
-            end,
-            buffer_close_icon = "x",
-            diagnostics = "nvim_lsp"
-        }
-    }
 
-  local cmp = require'cmp'
+  local cmp = require('cmp')
+  local lspkind = require('lspkind')
 
   cmp.setup({
+    formatting = {
+      format = lspkind.cmp_format(),
+    },
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
@@ -141,21 +170,12 @@ lua <<EOF
       end,
     },
     mapping = {
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      ['<Tab>'] = cmp.mapping(
-        function(fallback)
-            if cmp.visible() then
-                local entry = cmp.get_selected_entry()
-                if not entry then
-                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-                end
-                cmp.confirm()
-            else
-                fallback()
-            end
-        end,
-        {"i", "s", "c"}
-      )
+      ['<C-Space'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ['<Tab>'] = cmp.mapping.select_next_item(),
+      ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+--      ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i', 's', 'c'}),
+--      ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's', 'c'})
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
@@ -183,9 +203,16 @@ lua <<EOF
 
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+
+  -- clangd setup
   require('lspconfig')['clangd'].setup {
     capabilities = capabilities
   }
+
+  -- TypeScript setup
+  require('lspconfig')['tsserver'].setup {
+    capabilities = capabilities
+  }
+
 EOF
 
