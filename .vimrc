@@ -1,3 +1,6 @@
+" DEPRECATED: I've moved over to neovim completely and therefore don't maintain this anymore.
+" However, keeping this for reference
+
 set nocompatible
 filetype off
 

@@ -6,6 +6,3 @@ for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
 
-# Setup vim config
-ln -s $(pwd)/.vimrc ~/.vimrc
-
