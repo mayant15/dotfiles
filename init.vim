@@ -15,7 +15,7 @@ Plug 'hrsh7th/cmp-cmdline'
 
 " Plug 'hrsh7th/cmp-vsnip'
 " Plug 'hrsh7th/vim-vsnip'
-" Plug 'onsails/lspkind-nvim'
+Plug 'onsails/lspkind-nvim'
 
 " Language Support
 " Plug 'simrat39/rust-tools.nvim'
@@ -161,13 +161,13 @@ lua <<EOF
 
 
   local cmp = require('cmp')
-  -- local lspkind = require('lspkind')
+  local lspkind = require('lspkind')
 
   cmp.setup({
---[[
     formatting = {
       format = lspkind.cmp_format(),
     },
+--[[
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
