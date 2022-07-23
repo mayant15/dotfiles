@@ -1,0 +1,12 @@
+{
+    "workbench.sideBar.location": "right",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "One Dark Pro",
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "'JetBrains Mono', Consolas, 'Courier New', monospace",
+    "editor.lineNumbers": "relative",
+    "clangd.path": "d:\\ProgramFiles\\VSCodium\\data\\user-data\\User\\globalStorage\\llvm-vs-code-extensions.vscode-clangd\\install\\14.0.3\\clangd_14.0.3\\bin\\clangd.exe",
+    "editor.suggest.preview": true
+}
