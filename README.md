@@ -13,7 +13,7 @@ Clone with all submodules
 git clone --recursive https://github.com/mayant15/dotfiles
 ```
 
-The configuration can be install using the provided `install.sh` script.
+The configuration can be installed using the provided `install.sh` script.
 
 **WARNING:** This creates symlinks in your home directory. Please backup your own config files and inspect the script before running.
 
