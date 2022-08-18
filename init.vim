@@ -93,7 +93,7 @@ let g:nord_italic = 1
 let g:nord_underline = 1
 
 syntax on
-colorscheme nord
+colorscheme onedark
 
 set laststatus=2
 set noshowmode
@@ -102,7 +102,7 @@ set noshowmode
 set signcolumn=yes
 
 let g:lightline = {
-            \ 'colorscheme': 'nord',
+            \ 'colorscheme': 'onedark',
             \ 'active': {
             \ 'left' : [['mode', 'paste'], ['gitbranch', 'readonly', 'filename', 'modified']],
             \ 'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']],
