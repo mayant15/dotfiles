@@ -32,11 +32,14 @@ Plug 'preservim/nerdtree'
 " Editing
 Plug 'windwp/nvim-autopairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/goyo.vim'
 
 " Theme
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
+Plug 'ayu-theme/ayu-vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 call plug#end()
 filetype plugin indent on
@@ -90,8 +93,11 @@ let g:onedark_terminal_italics=1
 let g:nord_italic = 1
 let g:nord_underline = 1
 
+" Ayu config
+let ayucolor="mirage"
+
 syntax on
-colorscheme onedark
+colorscheme ayu
 
 set laststatus=2
 set noshowmode
@@ -113,6 +119,10 @@ let g:lightline = {
 function! LightlineFilename()
     return expand('%:.')
 endfunction
+
+" Goyo config
+let g:goyo_linenr=1
+nnoremap <leader>df :Goyo<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc plugins
@@ -150,6 +160,8 @@ nnoremap <C-]> :lua vim.lsp.buf.definition()<CR>
 " nnoremap <leader>gs :vert G<CR>:vertical res 30<CR>
 
 lua <<EOF
+  require("indent_blankline").setup {}
+
   -- require("rust-tools").setup {}
   require("nvim-autopairs").setup {}
 
