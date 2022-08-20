@@ -5,35 +5,33 @@ call plug#begin(stdpath('data') . '/plugged')
 
 " LSP and autocompletion
 Plug 'neovim/nvim-lspconfig'
+"
 " Completion plugin
 Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/vim-vsnip'
+
 " Completion sources
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/cmp-vsnip'
 
-" Plug 'hrsh7th/cmp-vsnip'
-" Plug 'hrsh7th/vim-vsnip'
 Plug 'onsails/lspkind-nvim'
 
 " Language Support
 " Plug 'simrat39/rust-tools.nvim'
-" Plug 'jez/vim-better-sml'
 
 " Information
 Plug 'itchyny/lightline.vim'
 Plug 'bling/vim-bufferline'
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 
-" FIXME: Disabled nerdtree for now because it loads a slow clipboard.vim
-" Sourcing this takes 918ms!
-" Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree'
 
 " Editing
 Plug 'windwp/nvim-autopairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'alvan/vim-closetag'
 
 " Theme
 Plug 'joshdick/onedark.vim'
@@ -121,8 +119,8 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " nerdtree
-" let g:NERDTreeShowHidden=1
-" let g:NERDTreeWinPos="right"
+let g:NERDTreeShowHidden=1
+let g:NERDTreeWinPos="right"
 
 " fzf
 nnoremap <C-p> :FZF<CR>
@@ -149,11 +147,7 @@ nnoremap <leader>lf :lua vim.lsp.buf.formatting_sync()<CR>
 nnoremap <C-]> :lua vim.lsp.buf.definition()<CR>
 
 " vim-fugitive
-nnoremap <leader>gs :vert G<CR>:vertical res 30<CR>
-
-" closetags
-" let g:closetag_filenames = '*.tsx'
-" let g:closetag_xhtml_filetypes = 'typescriptreact'
+" nnoremap <leader>gs :vert G<CR>:vertical res 30<CR>
 
 lua <<EOF
   -- require("rust-tools").setup {}
@@ -167,14 +161,12 @@ lua <<EOF
     formatting = {
       format = lspkind.cmp_format(),
     },
---[[
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
       end,
     },
---]]
     mapping = {
       ['<C-Space'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
@@ -185,7 +177,7 @@ lua <<EOF
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      -- { name = 'vsnip' }, -- For vsnip users.
+      { name = 'vsnip' }, -- For vsnip users.
     }, {
       { name = 'buffer' },
     })
