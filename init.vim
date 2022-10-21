@@ -17,17 +17,9 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-vsnip'
 
-Plug 'onsails/lspkind-nvim'
-
-" Language Support
-" Plug 'simrat39/rust-tools.nvim'
-
 " Information
-Plug 'itchyny/lightline.vim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'bling/vim-bufferline'
-" Plug 'tpope/vim-fugitive'
-
-Plug 'preservim/nerdtree'
 
 " Editing
 Plug 'windwp/nvim-autopairs'
@@ -35,10 +27,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/goyo.vim'
 
 " Theme
-Plug 'joshdick/onedark.vim'
-Plug 'arcticicestudio/nord-vim'
-Plug 'ayu-theme/ayu-vim'
-Plug 'sheerun/vim-polyglot'
+Plug 'Luxed/ayu-vim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 
 call plug#end()
@@ -86,39 +75,18 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-" OneDark config
-let g:onedark_terminal_italics=1
-
-" Nord config
-let g:nord_italic = 1
-let g:nord_underline = 1
+set background=dark
 
 " Ayu config
-let ayucolor="mirage"
+let g:ayucolor="mirage"
+let g:ayu_extended_palette = 1
+let g:ayu_italic_comment = 1
 
 syntax on
 colorscheme ayu
 
 set laststatus=2
 set noshowmode
-
-" Keep some space in gutter for symbols
-set signcolumn=yes
-
-let g:lightline = {
-            \ 'colorscheme': 'onedark',
-            \ 'active': {
-            \ 'left' : [['mode', 'paste'], ['gitbranch', 'readonly', 'filename', 'modified']],
-            \ 'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']],
-            \ },
-            \ 'component_function': {
-                \ 'filename': 'LightlineFilename',
-            \ },
-            \ }
-
-function! LightlineFilename()
-    return expand('%:.')
-endfunction
 
 " Goyo config
 let g:goyo_linenr=1
@@ -127,10 +95,6 @@ nnoremap <leader>df :Goyo<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" nerdtree
-let g:NERDTreeShowHidden=1
-let g:NERDTreeWinPos="right"
 
 " fzf
 nnoremap <C-p> :FZF<CR>
@@ -161,18 +125,13 @@ nnoremap <C-]> :lua vim.lsp.buf.definition()<CR>
 
 lua <<EOF
   require("indent_blankline").setup {}
+  require("lualine").setup {}
 
-  -- require("rust-tools").setup {}
   require("nvim-autopairs").setup {}
 
-
   local cmp = require('cmp')
-  local lspkind = require('lspkind')
 
   cmp.setup({
-    formatting = {
-      format = lspkind.cmp_format(),
-    },
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
@@ -212,12 +171,7 @@ lua <<EOF
   })
 
   -- Setup lspconfig.
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-  -- clangd setup
-  require('lspconfig')['clangd'].setup {
-    capabilities = capabilities
-  }
+  local capabilities = require('cmp_nvim_lsp')
 
   -- TypeScript setup
   --[[
