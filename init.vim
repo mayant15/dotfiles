@@ -68,6 +68,9 @@ noremap <Left> <Nop>
 " Appearance
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Keep a signcolumn always for errors and such
+set signcolumn=yes
+
 set hlsearch
 set cul
 
@@ -171,14 +174,14 @@ lua <<EOF
   })
 
   -- Setup lspconfig.
-  local capabilities = require('cmp_nvim_lsp')
+  local capabilities = require'cmp_nvim_lsp'
+  local lspconfig = require'lspconfig'
 
-  -- TypeScript setup
-  --[[
-  require('lspconfig')['tsserver'].setup {
-    capabilities = capabilities
-  }
-  --]]
+  -- Haskell setup
+  lspconfig.hls.setup {}
+
+  -- Rust setup
+  lspconfig.rust_analyzer.setup {}
 
 EOF
 
