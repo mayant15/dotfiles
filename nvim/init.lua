@@ -1,0 +1,5 @@
+require'mm.plugins'
+require'mm.lsp'
+require'mm.editor'
+require'mm.mappings'
+require'mm.theme'
