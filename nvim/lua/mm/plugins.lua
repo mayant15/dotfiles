@@ -21,7 +21,7 @@ require'packer'.startup (function(use)
         'nvim-lualine/lualine.nvim',
         config = function()
             require'lualine'.setup {
-                options = { theme = 'onedark' },
+                options = { theme = 'ayu_mirage' },
                 sections = {
                     lualine_c = {
                         {
@@ -35,28 +35,17 @@ require'packer'.startup (function(use)
             }
         end
     }
-    use 'nvim-telescope/telescope-file-browser.nvim'
-    use 'nvim-treesitter/nvim-treesitter-context'
     use {
         'lewis6991/gitsigns.nvim',
         config = function()
-            require'gitsigns'.setup {
-                current_line_blame = true
-            }
+            require'gitsigns'.setup {}
         end
     }
 
 	-- Appearance
-	use {
-        'navarasu/onedark.nvim',
-        config = function()
-            local onedark = require'onedark'
-            onedark.setup {
-                style = 'darker'
-            }
-            onedark.load()
-        end
-    }
+	use 'Luxed/ayu-vim'
+    -- use 'arcticicestudio/nord-vim'
+
 	use {
         'lukas-reineke/indent-blankline.nvim',
         config = function()
@@ -69,18 +58,6 @@ require'packer'.startup (function(use)
         'windwp/nvim-autopairs',
         config = function()
             require'nvim-autopairs'.setup {}
-        end
-    }
-    use {
-        'folke/zen-mode.nvim',
-        requires = {
-            'folke/twilight.nvim'
-        },
-        config = function()
-            require'zen-mode'.setup {
-                window = { width = 0.7 },
-                plugins = { twilight = { enabled = true } }
-            }
         end
     }
     use {
@@ -107,7 +84,7 @@ require'packer'.startup (function(use)
         run = ':TSUpdate',
         config = function()
             require'nvim-treesitter.configs'.setup {
-                incremental_selection = { enable = false },
+                incremental_selection = { enable = true },
                 highlight = { enable = true },
                 indent = { enable = true }
             }
@@ -116,11 +93,6 @@ require'packer'.startup (function(use)
 end)
 
 local telescope = require'telescope'
-telescope.setup {
-    extensions = {
-        file_browser = { theme = "ivy", hijack_netrw = false }
-    }
-}
+telescope.setup {}
 telescope.load_extension('fzf')
-telescope.load_extension('file_browser')
 

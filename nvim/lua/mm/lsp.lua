@@ -64,16 +64,22 @@ cmp.setup.cmdline(':', {
     )
 })
 
--- Haskell setup
-lspconfig.hls.setup {}
-
 -- Rust setup
 lspconfig.rust_analyzer.setup {}
+
+-- TypeScript
+lspconfig.tsserver.setup {}
 
 -- C++ setup
 lspconfig.clangd.setup {
     capabilities = capabilities
 }
+
+-- Haskell setup
+-- lspconfig.hls.setup {}
+
+-- Zig set
+-- lspconfig.zls.setup {}
 
 -- Autocomplete
 vim.o.completeopt = 'menu,menuone,preview,noinsert'
