@@ -142,6 +142,14 @@ require'packer'.startup (function(use)
             }
         end
     }
+
+    use {
+        'akinsho/bufferline.nvim',
+        config = function()
+            require('bufferline').setup {}
+        end
+    }
+
 end)
 
 local telescope = require'telescope'
