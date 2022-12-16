@@ -1,27 +1,38 @@
 vim.cmd [[packadd packer.nvim]]
 
 require'packer'.startup (function(use)
-	-- Packer manages itself
-	use 'wbthomason/packer.nvim'
+    -- Packer manages itself
+    use 'wbthomason/packer.nvim'
 
-	-- LSP and autocompletion
-	use 'neovim/nvim-lspconfig'
+    -- NOTE: Config for this is in lsp_zero.lua
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        requires = {
+            -- LSP Support
+            {'neovim/nvim-lspconfig'},
+            {'williamboman/mason.nvim'},
+            {'williamboman/mason-lspconfig.nvim'},
 
-	-- Completion plugins
-	use 'hrsh7th/nvim-cmp'
+            -- Autocompletion
+            {'hrsh7th/nvim-cmp'},
+            {'hrsh7th/cmp-buffer'},
+            {'hrsh7th/cmp-path'},
+            {'saadparwaiz1/cmp_luasnip'},
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'hrsh7th/cmp-nvim-lua'},
 
-	-- Completion sources
-	use 'hrsh7th/cmp-nvim-lsp'
-	use 'hrsh7th/cmp-buffer'
-	use 'hrsh7th/cmp-path'
-	use 'hrsh7th/cmp-cmdline'
+            -- Snippets
+            {'L3MON4D3/LuaSnip'},
+            {'rafamadriz/friendly-snippets'},
+        }
+    }
 
-	-- Information
-	use {
+    -- Information
+    use {
         'nvim-lualine/lualine.nvim',
         config = function()
             require'lualine'.setup {
-                options = { theme = 'ayu_mirage' },
+                options = { theme = 'rose-pine' },
                 sections = {
                     lualine_c = {
                         {
@@ -35,26 +46,34 @@ require'packer'.startup (function(use)
             }
         end
     }
+
+    -- use {
+    --     'lewis6991/gitsigns.nvim',
+    --     config = function()
+    --         require'gitsigns'.setup {}
+    --     end
+    -- }
+
+    use 'tpope/vim-fugitive'
+
+    -- Appearance
     use {
-        'lewis6991/gitsigns.nvim',
+        'rose-pine/neovim',
+        as = 'rose-pine',
         config = function()
-            require'gitsigns'.setup {}
+            vim.cmd('colorscheme rose-pine')
         end
     }
 
-	-- Appearance
-	use 'Luxed/ayu-vim'
-    -- use 'arcticicestudio/nord-vim'
-
-	use {
+    use {
         'lukas-reineke/indent-blankline.nvim',
         config = function()
             require'indent_blankline'.setup {}
         end
     }
 
-	-- Editing
-	use {
+    -- Editing
+    use {
         'windwp/nvim-autopairs',
         config = function()
             require'nvim-autopairs'.setup {}
@@ -75,18 +94,51 @@ require'packer'.startup (function(use)
             'nvim-lua/plenary.nvim'
         }
     }
+
     use {
         'nvim-telescope/telescope-fzf-native.nvim',
         run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
     }
+
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         config = function()
             require'nvim-treesitter.configs'.setup {
+            }
+
+            require'nvim-treesitter.configs'.setup {
+                ensure_installed = {"help", "typescript", "cpp", "lua", "rust" },
+                auto_install = true,
+                sync_install = false,
                 incremental_selection = { enable = true },
                 highlight = { enable = true },
                 indent = { enable = true }
+            }
+
+        end
+    }
+
+    use {
+        'gpanders/editorconfig.nvim',
+        config = function()
+            require("editorconfig")
+        end
+    }
+
+    use 'sbdchd/neoformat'
+
+    use {
+        'folke/zen-mode.nvim',
+        config = function()
+            require('zen-mode').setup {
+                window = {
+                    options = {
+                        number = true,
+                        relativenumber = true,
+                        cursorline = true
+                    }
+                }
             }
         end
     }

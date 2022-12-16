@@ -15,6 +15,8 @@ ops.expandtab = true
 ops.textwidth = 120
 ops.incsearch = true
 
+ops.scrolloff = 8
+
 -- Line numbers
 ops.rnu = true
 ops.nu = true
@@ -23,4 +25,7 @@ ops.nu = true
 ops.foldenable = false
 ops.foldmethod = 'expr'
 ops.foldexpr = 'nvim_treesitter#foldexpr()'
+
+-- Formatting config for Neoformat
+vim.g.neoformat_try_node_exe = 1
 
