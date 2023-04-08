@@ -4,6 +4,8 @@ require'packer'.startup (function(use)
     -- Packer manages itself
     use 'wbthomason/packer.nvim'
 
+    use 'lewis6991/impatient.nvim'
+
     -- NOTE: Config for this is in lsp_zero.lua
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -17,14 +19,18 @@ require'packer'.startup (function(use)
             {'hrsh7th/nvim-cmp'},
             {'hrsh7th/cmp-buffer'},
             {'hrsh7th/cmp-path'},
-            {'saadparwaiz1/cmp_luasnip'},
             {'hrsh7th/cmp-nvim-lsp'},
             {'hrsh7th/cmp-nvim-lua'},
-
-            -- Snippets
-            {'L3MON4D3/LuaSnip'},
-            {'rafamadriz/friendly-snippets'},
+            {'L3MON4D3/LuaSnip'}, -- Required
         }
+    }
+
+    -- LSP Status
+    use {
+        'j-hui/fidget.nvim',
+        config = function ()
+            require'fidget'.setup {}
+        end
     }
 
     -- Information
@@ -32,7 +38,8 @@ require'packer'.startup (function(use)
         'nvim-lualine/lualine.nvim',
         config = function()
             require'lualine'.setup {
-                options = { theme = 'rose-pine' },
+                -- options = { theme = 'everforest' },
+                options = { theme = 'catppuccin' },
                 sections = {
                     lualine_c = {
                         {
@@ -47,28 +54,25 @@ require'packer'.startup (function(use)
         end
     }
 
-    -- use {
-    --     'lewis6991/gitsigns.nvim',
-    --     config = function()
-    --         require'gitsigns'.setup {}
-    --     end
-    -- }
-
-    use 'tpope/vim-fugitive'
-
-    -- Appearance
     use {
-        'rose-pine/neovim',
-        as = 'rose-pine',
+        'lewis6991/gitsigns.nvim',
         config = function()
-            vim.cmd('colorscheme rose-pine')
+            require'gitsigns'.setup {}
         end
     }
+
+    -- Themes
+    use 'navarasu/onedark.nvim'
+    use 'doums/darcula'
+    use { "catppuccin/nvim", as = "catppuccin" }
 
     use {
         'lukas-reineke/indent-blankline.nvim',
         config = function()
-            require'indent_blankline'.setup {}
+            require'indent_blankline'.setup {
+                show_current_context = true,
+                use_treesitter = true,
+            }
         end
     }
 
@@ -108,16 +112,17 @@ require'packer'.startup (function(use)
             }
 
             require'nvim-treesitter.configs'.setup {
-                ensure_installed = {"help", "typescript", "cpp", "lua", "rust" },
+                ensure_installed = {"help", "typescript", "cpp", "lua"},
                 auto_install = true,
                 sync_install = false,
                 incremental_selection = { enable = true },
                 highlight = { enable = true },
                 indent = { enable = true }
             }
-
         end
     }
+
+    use 'nvim-treesitter/nvim-treesitter-context'
 
     use {
         'gpanders/editorconfig.nvim',
@@ -150,6 +155,15 @@ require'packer'.startup (function(use)
         end
     }
 
+    use {
+'ggandor/lightspeed.nvim',
+        config = function()
+            require('lightspeed').setup {}
+        end
+    }
+
+
+    use 'wakatime/vim-wakatime'
 end)
 
 local telescope = require'telescope'

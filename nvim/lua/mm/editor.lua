@@ -13,13 +13,17 @@ ops.shiftwidth = 0 -- Use tabstop as shiftwidth
 ops.expandtab = true
 
 ops.textwidth = 120
-ops.incsearch = true
 
-ops.scrolloff = 8
+ops.incsearch = true
+ops.hlsearch = true
+
+ops.cul = true
 
 -- Line numbers
 ops.rnu = true
 ops.nu = true
+
+ops.mouse = 'a'
 
 -- Code folding, courtesy of tree-sitter
 ops.foldenable = false
