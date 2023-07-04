@@ -7,6 +7,8 @@ This is my zsh, neovim and tmux configuration.
 **Requirements:**
 1. Install [zsh](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH), [neovim](https://neovim.io/) and [tmux](https://github.com/tmux/tmux#welcome-to-tmux)
 1. A Nerd Font for the prompt (like [JetBrainsMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/JetBrainsMono.zip))
+1. [tmux-sessionizer](https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer) script
+   placed at `~/.local/bin/tmux-sessionizer` (can edit the path in `.tmux.conf`)
 
 Clone with all submodules
 ```bash
