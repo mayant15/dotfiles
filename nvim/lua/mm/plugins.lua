@@ -26,13 +26,13 @@ require'packer'.startup (function(use)
     }
 
     -- LSP Status
-    use {
-        'j-hui/fidget.nvim',
-        config = function ()
-            require'fidget'.setup {}
-        end,
-        tag = 'legacy'
-    }
+    -- use {
+    --     'j-hui/fidget.nvim',
+    --     config = function ()
+    --         require'fidget'.setup {}
+    --     end,
+    --     tag = 'legacy'
+    -- }
 
     -- Information
     use {
@@ -40,7 +40,7 @@ require'packer'.startup (function(use)
         config = function()
             require'lualine'.setup {
                 -- options = { theme = 'everforest' },
-                options = { theme = 'catppuccin' },
+                -- options = { theme = 'catppuccin' },
                 sections = {
                     lualine_c = {
                         {
@@ -55,27 +55,11 @@ require'packer'.startup (function(use)
         end
     }
 
-    use {
-        'lewis6991/gitsigns.nvim',
-        config = function()
-            require'gitsigns'.setup {}
-        end
-    }
-
     -- Themes
-    use 'navarasu/onedark.nvim'
-    use 'doums/darcula'
-    use { "catppuccin/nvim", as = "catppuccin" }
+    -- use 'navarasu/onedark.nvim'
+    -- use 'doums/darcula'
+    -- use { "catppuccin/nvim", as = "catppuccin" }
 
-    use {
-        'lukas-reineke/indent-blankline.nvim',
-        config = function()
-            require'indent_blankline'.setup {
-                show_current_context = true,
-                use_treesitter = true,
-            }
-        end
-    }
 
     -- Editing
     use {
@@ -110,20 +94,19 @@ require'packer'.startup (function(use)
         run = ':TSUpdate',
         config = function()
             require'nvim-treesitter.configs'.setup {
-            }
-
-            require'nvim-treesitter.configs'.setup {
-                ensure_installed = {"help", "typescript", "cpp", "lua"},
+                ensure_installed = {"lua", "markdown", "markdown_inline"},
                 auto_install = true,
                 sync_install = false,
                 incremental_selection = { enable = true },
-                highlight = { enable = true },
+                highlight = {
+                    enable = true,
+                    additional_vim_regex_highlighting = { "markdown" },
+                },
                 indent = { enable = true }
             }
         end
     }
 
-    use 'nvim-treesitter/nvim-treesitter-context'
 
     use {
         'gpanders/editorconfig.nvim',
@@ -131,6 +114,47 @@ require'packer'.startup (function(use)
             require("editorconfig")
         end
     }
+
+    use({
+        "epwalsh/obsidian.nvim",
+        requires = {
+            "nvim-lua/plenary.nvim",
+        },
+        config = function()
+            require("obsidian").setup({
+                dir = "~/Documents/obsidian-vault",
+                notes_subdir = "Notes",
+                daily_notes = {
+                    folder = "Calendar/Daily",
+                },
+                completion = {
+                    nvim_cmp = true,
+                    min_chars = 2,
+                    new_notes_location = "notes_subdir",
+                },
+                mappings = {
+                    ["gf"] = require("obsidian.mapping").gf_passthrough(),
+                },
+                templates = {
+                    subdir = "Templates",
+                }
+            })
+        end,
+    })
+
+--[[
+
+
+
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require'gitsigns'.setup {}
+        end
+    }
+
+
+    use 'nvim-treesitter/nvim-treesitter-context'
 
     use 'sbdchd/neoformat'
 
@@ -163,8 +187,21 @@ require'packer'.startup (function(use)
         end
     }
 
-
     use 'wakatime/vim-wakatime'
+
+
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        config = function()
+            require'indent_blankline'.setup {
+                show_current_context = true,
+                use_treesitter = true,
+            }
+        end
+    }
+
+
+    --]]
 end)
 
 local telescope = require'telescope'

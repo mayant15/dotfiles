@@ -9,5 +9,5 @@ require'mm.plugins'
 require'mm.lsp_zero'
 require'mm.editor'
 require'mm.mappings'
-require'mm.theme'
+-- require'mm.theme'
 
