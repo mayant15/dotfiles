@@ -34,13 +34,14 @@ require'packer'.startup (function(use)
     --     tag = 'legacy'
     -- }
 
+    use { 'rose-pine/neovim', as = 'rose-pine' }
+
     -- Information
     use {
         'nvim-lualine/lualine.nvim',
         config = function()
             require'lualine'.setup {
-                -- options = { theme = 'everforest' },
-                -- options = { theme = 'catppuccin' },
+                options = { theme = 'modus-vivendi' },
                 sections = {
                     lualine_c = {
                         {
@@ -115,7 +116,7 @@ require'packer'.startup (function(use)
         end
     }
 
-    use({
+    use {
         "epwalsh/obsidian.nvim",
         requires = {
             "nvim-lua/plenary.nvim",
@@ -123,14 +124,13 @@ require'packer'.startup (function(use)
         config = function()
             require("obsidian").setup({
                 dir = "~/Documents/obsidian-vault",
-                notes_subdir = "Notes",
                 daily_notes = {
                     folder = "Calendar/Daily",
                 },
                 completion = {
                     nvim_cmp = true,
                     min_chars = 2,
-                    new_notes_location = "notes_subdir",
+                    new_notes_location = "current_dir",
                 },
                 mappings = {
                     ["gf"] = require("obsidian.mapping").gf_passthrough(),
@@ -140,19 +140,23 @@ require'packer'.startup (function(use)
                 }
             })
         end,
-    })
+    }
+
+    use {
+        'ggandor/lightspeed.nvim',
+        config = function()
+            require('lightspeed').setup {}
+        end
+    }
+
 
 --[[
-
-
-
     use {
         'lewis6991/gitsigns.nvim',
         config = function()
             require'gitsigns'.setup {}
         end
     }
-
 
     use 'nvim-treesitter/nvim-treesitter-context'
 
@@ -177,13 +181,6 @@ require'packer'.startup (function(use)
         'akinsho/bufferline.nvim',
         config = function()
             require('bufferline').setup {}
-        end
-    }
-
-    use {
-'ggandor/lightspeed.nvim',
-        config = function()
-            require('lightspeed').setup {}
         end
     }
 
