@@ -2,11 +2,6 @@ local lsp = require('lsp-zero')
 
 lsp.preset('recommended')
 
--- lsp.ensure_installed {
---     'tsserver',
---     'clangd',
--- }
-
 -----------------------------------------------------------
 --  LSP key mappings
 -----------------------------------------------------------
@@ -65,7 +60,7 @@ lsp.set_preferences {
     }
 }
 
-lsp.on_attach(function(client, bufnr)
+local on_attach = function(client, bufnr)
     local builtin = require('telescope.builtin')
 
     local withTheme = function(f)
@@ -122,6 +117,17 @@ lsp.on_attach(function(client, bufnr)
 
 
     nmap('<leader>bf', vim.cmd.Neoformat, '[B]uffer [F]ormat')
-end)
+end
+
+lsp.on_attach = on_attach
+
+local lspconfig = require 'lspconfig'
+lspconfig.zls.setup {
+    on_attach = on_attach
+}
+
+lspconfig.pylsp.setup {
+    on_attach = on_attach
+}
 
 lsp.setup()

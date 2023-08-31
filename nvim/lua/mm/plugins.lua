@@ -149,18 +149,15 @@ require'packer'.startup (function(use)
         end
     }
 
-
---[[
     use {
-        'lewis6991/gitsigns.nvim',
+        'lukas-reineke/indent-blankline.nvim',
         config = function()
-            require'gitsigns'.setup {}
+            require'indent_blankline'.setup {
+                show_current_context = true,
+                use_treesitter = true,
+            }
         end
     }
-
-    use 'nvim-treesitter/nvim-treesitter-context'
-
-    use 'sbdchd/neoformat'
 
     use {
         'folke/zen-mode.nvim',
@@ -177,28 +174,26 @@ require'packer'.startup (function(use)
         end
     }
 
+--[[
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require'gitsigns'.setup {}
+        end
+    }
+
+    use 'nvim-treesitter/nvim-treesitter-context'
+
+    use 'sbdchd/neoformat'
+
     use {
         'akinsho/bufferline.nvim',
         config = function()
             require('bufferline').setup {}
         end
     }
+--]]
 
-    use 'wakatime/vim-wakatime'
-
-
-    use {
-        'lukas-reineke/indent-blankline.nvim',
-        config = function()
-            require'indent_blankline'.setup {
-                show_current_context = true,
-                use_treesitter = true,
-            }
-        end
-    }
-
-
-    --]]
 end)
 
 local telescope = require'telescope'
