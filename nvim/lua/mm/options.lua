@@ -1,5 +1,17 @@
 local ops = vim.o
 
+-- ===============================================
+-- THEME
+
+ops.termguicolors = true
+ops.background = 'dark'
+ops.signcolumn = 'yes'
+ops.laststatus = 2
+ops.noshowmode = true
+
+-- ===============================================
+-- EDITING
+
 -- Encoding
 ops.enc = 'utf-8'
 ops.fenc = 'utf-8'

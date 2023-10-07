@@ -40,15 +40,13 @@ function HandleCtrlSpacePress(fallback)
     end
 end
 
-local cmp_mappings = lsp.defaults.cmp_mappings {
-    ['<CR>'] = cmp.mapping.confirm({ select = false }),
-    ['<Tab>'] = cmp.mapping(HandleTabPress, {"i", "s"}),
-    ['<S-Tab>'] = cmp.mapping(HandleShiftTabPress, {"i", "s"}),
-    ['<C-Space>'] = cmp.mapping(HandleCtrlSpacePress, {"i", "s"}),
-}
-
-lsp.setup_nvim_cmp {
-    mapping = cmp_mappings
+cmp.setup {
+    mapping = cmp.mapping.preset.insert {
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
+        ['<Tab>'] = cmp.mapping(HandleTabPress, {"i", "s"}),
+        ['<S-Tab>'] = cmp.mapping(HandleShiftTabPress, {"i", "s"}),
+        ['<C-Space>'] = cmp.mapping(HandleCtrlSpacePress, {"i", "s"}),
+    }
 }
 
 lsp.set_preferences {
