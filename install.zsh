@@ -1,8 +1,13 @@
 #!/bin/zsh
 
-source ./scripts/install_prezto.zsh
-source ./scripts/install_nvim.zsh
-echo "Skipping starship installation. Using default prompt."
-# source ./scripts/install_starship.zsh
-source ./scripts/install_tmux.zsh
+ln -s $(pwd)/nvim $HOME/.config/nvim
+ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
+
+ln -s $(pwd)/prezto "${ZDOTDIR:-$HOME}/.zprezto"
+
+# From prezto docs
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
 
