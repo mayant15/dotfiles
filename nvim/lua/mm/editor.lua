@@ -30,6 +30,3 @@ ops.foldenable = false
 ops.foldmethod = 'expr'
 ops.foldexpr = 'nvim_treesitter#foldexpr()'
 
--- Formatting config for Neoformat
-vim.g.neoformat_try_node_exe = 1
-

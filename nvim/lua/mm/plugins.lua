@@ -56,12 +56,6 @@ require'packer'.startup (function(use)
         end
     }
 
-    -- Themes
-    -- use 'navarasu/onedark.nvim'
-    -- use 'doums/darcula'
-    -- use { "catppuccin/nvim", as = "catppuccin" }
-
-
     -- Editing
     use {
         'windwp/nvim-autopairs',
@@ -108,14 +102,6 @@ require'packer'.startup (function(use)
         end
     }
 
-
-    use {
-        'gpanders/editorconfig.nvim',
-        config = function()
-            require("editorconfig")
-        end
-    }
-
     use {
         "epwalsh/obsidian.nvim",
         requires = {
@@ -152,9 +138,10 @@ require'packer'.startup (function(use)
     use {
         'lukas-reineke/indent-blankline.nvim',
         config = function()
-            require'indent_blankline'.setup {
-                show_current_context = true,
-                use_treesitter = true,
+            require'ibl'.setup {
+                scope = {
+                    show_start = false
+                }
             }
         end
     }
