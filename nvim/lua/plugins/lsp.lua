@@ -1,24 +1,30 @@
 return {
     {
-        'VonHeikemen/lsp-zero.nvim',
+        "neovim/nvim-lspconfig",
+        config = function()
+            require("mm.lsp")
+        end,
         dependencies = {
-            -- LSP Support
-            {'neovim/nvim-lspconfig'},
-            {'williamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
 
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-buffer'},
-            {'hrsh7th/cmp-path'},
-            {'hrsh7th/cmp-nvim-lsp'},
-            {'hrsh7th/cmp-nvim-lua'},
-            {'L3MON4D3/LuaSnip'}, -- Required
+            "hrsh7th/nvim-cmp",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+
+            -- REQUIRED
+            "L3MON4D3/LuaSnip"
         }
+    },
+    {
+        "folke/neodev.nvim",
+        opts = {}
     },
     {
         'j-hui/fidget.nvim',
         tag = 'legacy',
+        event = "LspAttach",
         config = true
     }
 }
