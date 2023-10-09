@@ -26,12 +26,5 @@ return {
         tag = 'legacy',
         event = "LspAttach",
         config = true
-    },
-    {
-        "scalameta/nvim-metals",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            -- "mfussenegger/nvim-dap",
-        }
     }
 }
