@@ -6,7 +6,7 @@ return {
             local configs = require("nvim-treesitter.configs")
             configs.setup {
                 ensure_installed = {"lua"},
-                auto_install = true,
+                -- auto_install = true,
                 sync_install = false,
                 incremental_selection = { enable = true },
                 highlight = { enable = true },
