@@ -36,19 +36,22 @@ return {
     },
     {
         'nvim-lualine/lualine.nvim',
-        opts = {
-            options = { theme = 'modus-vivendi' },
-            sections = {
-                lualine_c = {
-                    {
-                        'filename',
-                        file_status = true,
-                        newfile_status = true,
-                        path = 1,
+        config = function()
+            local theme = require('lualine.themes.rose-pine')
+            require('lualine').setup {
+                options = { theme = theme },
+                sections = {
+                    lualine_c = {
+                        {
+                            'filename',
+                            file_status = true,
+                            newfile_status = true,
+                            path = 1,
+                        }
                     }
                 }
             }
-        }
+        end
     },
     {
         'lewis6991/gitsigns.nvim',
