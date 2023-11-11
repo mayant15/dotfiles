@@ -26,5 +26,8 @@ return {
         tag = 'legacy',
         event = "LspAttach",
         config = true
+    },
+    {
+        "onsails/lspkind.nvim"
     }
 }

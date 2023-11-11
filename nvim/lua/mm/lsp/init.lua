@@ -81,12 +81,15 @@ function HandleCtrlSpacePress(fallback)
     end
 end
 
+local lspkind = require("lspkind")
+
 cmp.setup {
     sources = cmp.config.sources {
-        { name = "copilot" },
+        -- { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "buffer" },
-        { name = "path" }
+        { name = "path" },
+        { name = "luasnip" }
     },
     mapping = cmp.mapping.preset.insert {
         ['<CR>'] = cmp.mapping.confirm({ select = false }),
@@ -107,6 +110,13 @@ cmp.setup {
         expand = function(args)
             require("luasnip").lsp_expand(args.body)
         end
-    }
+    },
+    -- formatting = {
+    --     format = lspkind.cmp_format {
+    --         mode = 'symbol_text',
+    --         symbol_map = { Copilot = "" }
+    --     }
+    -- }
 }
+
 

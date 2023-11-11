@@ -42,3 +42,7 @@ ops.foldenable = false
 ops.foldmethod = 'expr'
 ops.foldexpr = 'nvim_treesitter#foldexpr()'
 
+-- ===============================================
+-- netrw
+
+vim.g.netrw_bufsettings = 'noma nomod nowrap ro nobl rnu'
