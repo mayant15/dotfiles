@@ -1,4 +1,4 @@
-require("neodev").setup {}
+-- require("neodev").setup {}
 
 local lspconfig = require("lspconfig")
 local defaults = lspconfig.util.default_config
@@ -81,7 +81,7 @@ function HandleCtrlSpacePress(fallback)
     end
 end
 
-local lspkind = require("lspkind")
+-- local lspkind = require("lspkind")
 
 cmp.setup {
     sources = cmp.config.sources {

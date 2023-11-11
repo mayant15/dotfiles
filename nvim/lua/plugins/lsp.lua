@@ -19,6 +19,7 @@ return {
     },
     {
         "folke/neodev.nvim",
+        enabled = false,
         opts = {}
     },
     {
@@ -28,6 +29,7 @@ return {
         config = true
     },
     {
-        "onsails/lspkind.nvim"
+        "onsails/lspkind.nvim",
+        enabled = false,
     }
 }
