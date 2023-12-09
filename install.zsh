@@ -2,6 +2,7 @@
 
 ln -s $(pwd)/nvim $HOME/.config/nvim
 ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
+ln -s $(pwd)/tmux-sessionizer $HOME/.local/bin/tmux-sessionizer
 
 ln -s $(pwd)/prezto "${ZDOTDIR:-$HOME}/.zprezto"
 
