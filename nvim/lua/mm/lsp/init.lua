@@ -41,6 +41,12 @@ require("mason-lspconfig").setup {
     }
 }
 
+lspconfig.zls.setup {
+    on_attach = function(client, bufnr)
+        setup_mappings(bufnr)
+    end
+}
+
 local cmp = require("cmp")
 
 -- See https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#super-tab-like-mapping
