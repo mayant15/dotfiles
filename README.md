@@ -1,6 +1,6 @@
 # dotfiles
 
-This is my zsh, neovim and tmux configuration.
+This is my zsh, neovim and tmux configuration (and also some extras).
 
 ## Usage
 
@@ -13,7 +13,7 @@ Clone with all submodules
 git clone --recursive https://github.com/mayant15/dotfiles
 ```
 
-The configuration can be installed using the provided `install.zsh` script.
+The configuration (and some extras) can be installed using the provided `install.zsh` script.
 
 **WARNING:** This creates symlinks in your home directory. Please backup your own config files and inspect the script before running.
 
@@ -21,4 +21,5 @@ The following components are installed:
 1. [prezto](https://github.com/sorin-ionescu/prezto) for zsh configuration
 1. Neovim config with plugins via [lazy.nvim](https://github.com/folke/lazy.nvim)
 1. Basic tmux keymaps and config
+1. [Alacritty](https://github.com/alacritty/alacritty) config that sets up fonts and colors
 

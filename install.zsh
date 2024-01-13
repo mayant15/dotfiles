@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 ln -s $(pwd)/nvim $HOME/.config/nvim
+ln -s $(pwd)/alacritty $HOME/.config/alacritty
 ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
 ln -s $(pwd)/tmux-sessionizer $HOME/.local/bin/tmux-sessionizer
 
