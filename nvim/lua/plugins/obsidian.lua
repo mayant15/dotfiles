@@ -28,6 +28,9 @@ return {
                 use_path_only = true,
             },
             open_notes_in = "vsplit",
+            follow_url_func = function(url)
+                vim.fn.jobstart({"xdg-open", url})
+            end,
             ui = {
                 enable = true,
                 checkboxes = {
