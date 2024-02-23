@@ -1,11 +1,11 @@
 return {
     {
         'numToStr/Comment.nvim',
-        config = true
+        opts = {}
     },
     {
         'windwp/nvim-autopairs',
-        config = true
+        opts = {}
     },
     {
         'ggandor/leap.nvim',
@@ -64,6 +64,6 @@ return {
     },
     {
         'lewis6991/gitsigns.nvim',
-        config = true
-    }
+        opts = {}
+    },
 }

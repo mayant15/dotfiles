@@ -1,4 +1,4 @@
--- require("neodev").setup {}
+require('neodev').setup {}
 
 local lspconfig = require("lspconfig")
 local defaults = lspconfig.util.default_config
@@ -27,10 +27,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local buf = event.buf
         setup_mappings(buf)
 
-        local command = vim.api.nvim_buf_create_user_command
-        command(buf, "LspFormat", function()
-            vim.lsp.buf.format()
-        end, { desc = "Format buffer with language server" })
+        -- local command = vim.api.nvim_buf_create_user_command
+        -- command(buf, "LspFormat", function()
+        --     vim.lsp.buf.format()
+        -- end, { desc = "Format buffer with language server" })
     end
 })
 
@@ -46,6 +46,8 @@ lspconfig.zls.setup {
         setup_mappings(bufnr)
     end
 }
+
+lspconfig.racket_langserver.setup {}
 
 local cmp = require("cmp")
 
@@ -87,7 +89,7 @@ function HandleCtrlSpacePress(fallback)
     end
 end
 
--- local lspkind = require("lspkind")
+local lspkind = require("lspkind")
 
 cmp.setup {
     sources = cmp.config.sources {
@@ -117,12 +119,12 @@ cmp.setup {
             require("luasnip").lsp_expand(args.body)
         end
     },
-    -- formatting = {
-    --     format = lspkind.cmp_format {
-    --         mode = 'symbol_text',
-    --         symbol_map = { Copilot = "" }
-    --     }
-    -- }
+    formatting = {
+        format = lspkind.cmp_format {
+            mode = 'symbol_text',
+            -- symbol_map = { Copilot = "" }
+        }
+    }
 }
 
 

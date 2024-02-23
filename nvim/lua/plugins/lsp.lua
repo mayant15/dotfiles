@@ -19,17 +19,14 @@ return {
     },
     {
         "folke/neodev.nvim",
-        enabled = false,
         opts = {}
     },
     {
         'j-hui/fidget.nvim',
-        tag = 'legacy',
-        event = "LspAttach",
-        config = true
+        opts = {}
     },
     {
         "onsails/lspkind.nvim",
-        enabled = false,
+        config = false,
     }
 }

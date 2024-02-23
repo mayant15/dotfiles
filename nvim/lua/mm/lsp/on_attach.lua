@@ -4,7 +4,7 @@ return {
 
         local withTheme = function(f)
             local theme = require('telescope.themes').get_dropdown({})
-            return function ()
+            return function()
                 f(theme)
             end
         end
@@ -54,7 +54,6 @@ return {
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, '[W]orkspace [L]ist Folders')
 
-
-        nmap('<leader>bf', vim.cmd.Neoformat, '[B]uffer [F]ormat')
+        nmap('<leader>bf', vim.lsp.buf.format, '[B]uffer [F]ormat')
     end
 }
