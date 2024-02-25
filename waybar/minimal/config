@@ -1,0 +1,72 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "modules-left": ["hyprland/workspaces"],
+  "modules-right": ["cpu", "memory", "disk", "backlight", "pulseaudio", "battery", "clock", "bluetooth", "tray"],
+
+  "bluetooth": {
+    "format": "",
+    "on-click": "blueberry",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_battery_percentage}%)",
+    "tooltip-format": "{device_enumerate}"
+  },
+
+  "pulseaudio": {
+    "tooltip": true,
+    "scroll-step": 5,
+    "format": "{icon} {volume}% |",
+    "format-muted": "󰝟 |",
+    "on-click":"pavucontrol # pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "format-icons": {
+      "default": ["", "", ""]
+    }
+  },
+
+  "disk": {
+    "format": "  {percentage_used}% |",
+    "on-click": "thunar"
+  },
+
+  "backlight": {
+    "tooltip": false,
+    "format": " {}% |",
+    "on-scroll-up": "lightctl +",
+    "on-scroll-down": "lightctl -"
+  },
+
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 25,
+      "critical": 15
+    },
+    "format": "{icon}  {capacity}% |",
+    "format-charging": " {capacity}% |",
+    "format-plugged": " {capacity}% |",
+    "format-alt": "{time} {icon} |",
+    "format-icons": ["", "", "", "", ""]
+  },
+
+  "tray":{
+    "icon-size":18,
+    "spacing": 10
+  },
+
+  "clock": {
+    "format": "{: %I:%M %p} |",
+    "tooltip-format": "{:%Y-%m-%d}",
+  },
+
+  "cpu": {
+    "interval": 15,
+    "format": " {}% |",
+    "max-length": 10
+  },
+
+  "memory": {
+    "interval": 30,
+    "format": " {}% |",
+    "max-length": 10
+  },
+}

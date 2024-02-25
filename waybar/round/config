@@ -1,0 +1,140 @@
+{
+  /* From https://github.com/theCode-Breaker/riverwm/tree/main/waybar/river */
+  
+	"layer": "top",
+  "position": "bottom",
+	"modules-left": ["custom/launcher", "cpu", "memory", "disk", "bluetooth", "tray"],
+	"modules-center": ["hyprland/workspaces"],
+	"modules-right": ["privacy", "backlight","pulseaudio", "battery", "clock"],
+
+  "bluetooth": {
+    "format": " {num_connections}",
+    "on-click": "blueberry",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_battery_percentage}%)",
+    "tooltip-format": "{device_enumerate}"
+  },
+
+	"pulseaudio": {
+		"tooltip": true,
+		"scroll-step": 5,
+		"format": "{icon} {volume}%",
+		"format-muted": "󰝟",
+		"on-click":"pavucontrol # pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"format-icons": {
+			"default": ["", "", ""]
+		}
+	},
+
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 18,
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "screenshare",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-out",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-in",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      }
+    ]
+  },
+
+	"network": {
+		"tooltip": false,
+		"format-wifi": "  {essid}",
+		"format-ethernet": ""
+	},
+
+  "disk": {
+    "format": "  {percentage_used}%",
+    "on-click": "thunar"
+  },
+
+	"backlight": {
+		"tooltip": false,
+		"format": " {}%",
+    "on-scroll-up": "lightctl +",
+		"on-scroll-down": "lightctl -"
+	},
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 25,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+	"tray":{
+		"icon-size":18,
+		"spacing": 10
+	},
+  "clock": {
+    "format": "{: %I:%M %p}",
+    "tooltip-format": "{:%Y-%m-%d}",
+    // "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    // "calendar": {
+    //   "mode"          : "year",
+    //   "mode-mon-col"  : 3,
+    //   "weeks-pos"     : "right",
+    //   "on-scroll"     : 1,
+    //   "on-click-right": "mode",
+    //   "format": {
+    //     "months":     "<span color='#ffead3'><b>{}</b></span>",
+    //     "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+    //     // "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+    //     "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+    //     "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+    //   }
+    // }
+  },
+    "cpu": {
+        "interval": 15,
+        "format": " {}%",
+        "max-length": 10
+    },
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "max-length": 10
+    },
+    "custom/media": {
+        "interval": 30,
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 20,
+        "format-icons": {
+            "spotify": " ",
+            "default": " "
+        },
+        "escape": true,
+        "exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
+        "on-click": "playerctl play-pause"
+    },
+    "custom/launcher":{
+        "format": " ",
+        "tooltip": false,
+    },
+    "custom/power":{
+        "format": " ",
+        "tooltip": false,
+        "on-click": "lock",
+    },
+    "custom/wallpaper":{
+        "format":" ",
+        "on-click": "bash ~/.config/system_scripts/pkill_bc"
+    }
+}
