@@ -31,6 +31,22 @@ map('n', '<leader>sd', withTheme(builtin.diagnostics), { desc = '[S]earch [D]iag
 -- File explorer
 map('n', '<leader>1', ':Ex<CR>', { noremap = true })
 
+-- Git diff view
+-- TODO: This should toggle like IntelliJ
+map('n', '<leader>0', require('diffview').open, { noremap = true })
+
 -- Buffers
 map('n', '[b', vim.cmd.bprevious)
 map('n', ']b', vim.cmd.bnext)
+map('n', '[t', vim.cmd.tabprevious)
+map('n', ']t', vim.cmd.tabnext)
+
+map('n', '<leader>4', "'A", { desc = 'Go to camera location 1' })
+map('n', '<leader>5', "'B", { desc = 'Go to camera location 2' })
+map('n', '<leader>6', "'C", { desc = 'Go to camera location 3' })
+map('n', '<leader>7', "'D", { desc = 'Go to camera location 4' })
+map('n', "'4", "mA", { desc = 'Set camera location 1' })
+map('n', "'5", "mB", { desc = 'Set camera location 2' })
+map('n', "'6", "mC", { desc = 'Set camera location 3' })
+map('n', "'7", "mD", { desc = 'Set camera location 4' })
+

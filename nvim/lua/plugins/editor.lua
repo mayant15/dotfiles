@@ -63,7 +63,12 @@ return {
         end
     },
     {
+        'nvim-tree/nvim-web-devicons',
+        opts = {}
+    },
+    {
         'lewis6991/gitsigns.nvim',
         opts = {}
     },
+    { 'sindrets/diffview.nvim' },
 }
