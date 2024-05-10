@@ -326,9 +326,12 @@
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#ebbcba"
-    foreground = "#191724"
-    frame_color = "#ebbcba"
+    # background = "#ebbcba"
+    # foreground = "#191724"
+    # frame_color = "#ebbcba"
+    background = "#21202e"
+    foreground = "#ebbcba"
+    frame_color = "#21202e"
     timeout = 10
     override_pause_level = 30
     # Icon for notifications with normal urgency, uncomment to enable

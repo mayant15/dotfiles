@@ -1,6 +1,6 @@
 const std = @import("std");
 
-const STEP = 0.15; // increase/decrease in brightness
+const STEP = 0.05; // increase/decrease in brightness
 
 const MAX_BRIGHTNESS_FILE = "/sys/class/backlight/nvidia_wmi_ec_backlight/max_brightness";
 const BRIGHTNESS_FILE = "/sys/class/backlight/nvidia_wmi_ec_backlight/brightness";

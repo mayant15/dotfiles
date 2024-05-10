@@ -4,12 +4,14 @@ return {
         branch = '0.1.x',
         dependencies =  {
             'nvim-lua/plenary.nvim',
+        },
+        opts = {
+            pickers = {
+                marks = {
+                    mark_type = "global"
+                }
+            }
         }
-    },
-    { 'nvim-telescope/telescope-ui-select.nvim' },
-    {
-        'AckslD/nvim-neoclip.lua',
-        opts = {}
     },
     {
         'nvim-telescope/telescope-fzf-native.nvim',

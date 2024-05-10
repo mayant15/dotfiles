@@ -13,7 +13,7 @@ local setup_mappings = require("mm.lsp.on_attach").setup_mappings
 
 local function default_server_handler(server)
     require('lspconfig')[server].setup {
-        -- NOTE: We probably don't need this here if we call
+        --  NOTE: We probably don't need this here if we call
         -- setup_mappings on LspAttach event below
         -- on_attach = function(client, bufnr)
         --     setup_mappings(bufnr)
@@ -43,6 +43,12 @@ require("mason-lspconfig").setup {
 
 lspconfig.zls.setup {
     on_attach = function(client, bufnr)
+        setup_mappings(bufnr)
+    end
+}
+
+lspconfig.nushell.setup {
+    on_attach = function (client, bufnr)
         setup_mappings(bufnr)
     end
 }

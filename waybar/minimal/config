@@ -2,7 +2,8 @@
   "layer": "top",
   "position": "bottom",
   "modules-left": ["hyprland/workspaces"],
-  "modules-right": ["cpu", "memory", "disk", "backlight", "pulseaudio", "battery", "clock", "bluetooth", "tray"],
+  /* "modules-right": ["cpu", "memory", "disk", "backlight", "pulseaudio", "battery", "clock", "bluetooth", "tray"], */
+  "modules-right": ["backlight", "pulseaudio", "battery", "clock", "bluetooth", "tray"],
 
   "bluetooth": {
     "format": "",
@@ -54,8 +55,8 @@
   },
 
   "clock": {
-    "format": "{: %I:%M %p} |",
-    "tooltip-format": "{:%Y-%m-%d}",
+    "format": " {:%R} |",
+    "tooltip-format": "{:%F}",
   },
 
   "cpu": {

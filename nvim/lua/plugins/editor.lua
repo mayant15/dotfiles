@@ -9,9 +9,24 @@ return {
     },
     {
         'ggandor/leap.nvim',
-        config = function()
-            require('leap').add_default_mappings()
-        end
+        enabled = false,
+        -- config = function()
+        --     require('leap').add_default_mappings()
+        -- end
+    },
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        opts = {
+            modes = {
+                search = {
+                    enabled = false
+                }
+            }
+        },
+        keys = {
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+        },
     },
     {
         'lukas-reineke/indent-blankline.nvim',
@@ -71,4 +86,20 @@ return {
         opts = {}
     },
     { 'sindrets/diffview.nvim' },
+    {
+        "utilyre/barbecue.nvim",
+        name = "barbecue",
+        opts = {},
+        dependencies = {
+            "SmiteshP/nvim-navic",
+            "nvim-tree/nvim-web-devicons", -- optional dependency
+        },
+    },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            signs = false,
+        }
+    }
 }

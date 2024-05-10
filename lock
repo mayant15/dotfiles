@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+swaylock --image "$HOME/pictures/wallpapers/mountain.jpg"
+

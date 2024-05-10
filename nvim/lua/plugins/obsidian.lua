@@ -24,13 +24,32 @@ return {
             },
             completion = {
                 nvim_cmp = true,
-                new_notes_location = "current_dir",
-                use_path_only = true,
             },
+            new_notes_location = "current_dir",
             open_notes_in = "vsplit",
             follow_url_func = function(url)
                 vim.fn.jobstart({"xdg-open", url})
             end,
+            mappings = {
+                ["<leader>ch"] = {
+                    action = function()
+                        require('mm.corgi').mark_done()
+                    end,
+                    opts = { buffer = true },
+                },
+                ["gf"] = {
+                    action = function()
+                        return require("obsidian").util.gf_passthrough()
+                    end,
+                    opts = { noremap = false, expr = true, buffer = true },
+                },
+                ["<cr>"] = {
+                    action = function()
+                        return require("obsidian").util.smart_action()
+                    end,
+                    opts = { buffer = true },
+                }
+            },
             ui = {
                 enable = true,
                 checkboxes = {

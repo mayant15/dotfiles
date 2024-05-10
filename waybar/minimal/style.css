@@ -27,7 +27,7 @@
 }
 
 window#waybar {
-	background: transparent;
+	background: @base;
 }
 
 #workspaces {
@@ -66,6 +66,6 @@ window#waybar {
 }
 
 #battery.critical:not(.charging) {
-  background: @rose;
+  background: red;
   color: @text;
 }
