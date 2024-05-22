@@ -7,7 +7,7 @@ ops.termguicolors = true
 ops.background = 'dark'
 ops.signcolumn = 'yes'
 ops.laststatus = 2
-ops.noshowmode = true
+ops.showmode = false
 
 -- ===============================================
 -- EDITING
@@ -15,7 +15,6 @@ ops.noshowmode = true
 -- Encoding
 ops.enc = 'utf-8'
 ops.fenc = 'utf-8'
-ops.termencoding = 'utf-8'
 
 -- Indentation
 ops.autoindent = true
