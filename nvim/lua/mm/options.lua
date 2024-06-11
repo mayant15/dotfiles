@@ -41,6 +41,9 @@ ops.foldenable = false
 ops.foldmethod = 'expr'
 ops.foldexpr = 'nvim_treesitter#foldexpr()'
 
+-- Default Tex filetype is Latex
+vim.g.tex_flavor = 'latex'
+
 -- ===============================================
 -- netrw
 

@@ -53,7 +53,18 @@ lspconfig.nushell.setup {
     end
 }
 
-lspconfig.racket_langserver.setup {}
+lspconfig.texlab.setup {
+    on_attach = function (client, bufnr)
+        setup_mappings(bufnr)
+    end,
+    settings = {
+        texlab = {
+            chktex = {
+                onOpenAndSave = true
+            }
+        }
+    }
+}
 
 local cmp = require("cmp")
 

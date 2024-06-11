@@ -14,7 +14,11 @@ return {
             require('neorg').setup {
                 load = {
                     ["core.defaults"] = {},
-                    ["core.concealer"] = {},
+                    ["core.concealer"] = {
+                        config = {
+                            icon_preset = 'diamond'
+                        }
+                    },
                     ["core.completion"] = {
                         config = {
                             engine = "nvim-cmp"
@@ -38,5 +42,6 @@ return {
         "lukas-reineke/headlines.nvim",
         dependencies = "nvim-treesitter/nvim-treesitter",
         config = true,
+        enabled = false,
     },
 }
