@@ -35,16 +35,11 @@ map('n', '<C-k>', ':cprev<CR>', { desc = 'Go to previous entry in the quickfix l
 -- File explorer
 map('n', '<leader>1', ':Ex<CR>', { noremap = true })
 
--- Git diff view
---  TODO: This should toggle like IntelliJ
-map('n', '<leader>0', require('diffview').open, { noremap = true })
-
 -- Buffers
 map('n', '[b', vim.cmd.bprevious)
 map('n', ']b', vim.cmd.bnext)
--- map('n', '[t', vim.cmd.tabprevious)
--- map('n', ']t', vim.cmd.tabnext)
 
+-- Camera locations
 map('n', '<leader>4', "'A", { desc = 'Go to camera location 1' })
 map('n', '<leader>5', "'B", { desc = 'Go to camera location 2' })
 map('n', '<leader>6', "'C", { desc = 'Go to camera location 3' })

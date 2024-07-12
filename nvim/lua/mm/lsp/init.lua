@@ -26,11 +26,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(event)
         local buf = event.buf
         setup_mappings(buf)
-
-        -- local command = vim.api.nvim_buf_create_user_command
-        -- command(buf, "LspFormat", function()
-        --     vim.lsp.buf.format()
-        -- end, { desc = "Format buffer with language server" })
     end
 })
 
@@ -42,12 +37,6 @@ require("mason-lspconfig").setup {
 }
 
 lspconfig.zls.setup {
-    on_attach = function(_, bufnr)
-        setup_mappings(bufnr)
-    end
-}
-
-lspconfig.nushell.setup {
     on_attach = function(_, bufnr)
         setup_mappings(bufnr)
     end

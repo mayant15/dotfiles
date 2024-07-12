@@ -8,13 +8,6 @@ return {
         opts = {}
     },
     {
-        'ggandor/leap.nvim',
-        enabled = false,
-        -- config = function()
-        --     require('leap').add_default_mappings()
-        -- end
-    },
-    {
         "folke/flash.nvim",
         event = "VeryLazy",
         opts = {
@@ -85,21 +78,13 @@ return {
         'lewis6991/gitsigns.nvim',
         opts = {}
     },
-    { 'sindrets/diffview.nvim' },
     {
         "utilyre/barbecue.nvim",
         name = "barbecue",
         opts = {},
         dependencies = {
             "SmiteshP/nvim-navic",
-            "nvim-tree/nvim-web-devicons", -- optional dependency
+            "nvim-tree/nvim-web-devicons",
         },
-    },
-    {
-        "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        opts = {
-            signs = false,
-        }
     }
 }
