@@ -4,9 +4,9 @@ local lspconfig = require("lspconfig")
 local defaults = lspconfig.util.default_config
 
 defaults.capabilities = vim.tbl_deep_extend(
-  'force',
-  defaults.capabilities,
-  require('cmp_nvim_lsp').default_capabilities()
+    'force',
+    defaults.capabilities,
+    require('cmp_nvim_lsp').default_capabilities()
 )
 
 local setup_mappings = require("mm.lsp.on_attach").setup_mappings
@@ -42,19 +42,19 @@ require("mason-lspconfig").setup {
 }
 
 lspconfig.zls.setup {
-    on_attach = function(client, bufnr)
+    on_attach = function(_, bufnr)
         setup_mappings(bufnr)
     end
 }
 
 lspconfig.nushell.setup {
-    on_attach = function (client, bufnr)
+    on_attach = function(_, bufnr)
         setup_mappings(bufnr)
     end
 }
 
 lspconfig.texlab.setup {
-    on_attach = function (client, bufnr)
+    on_attach = function(_, bufnr)
         setup_mappings(bufnr)
     end,
     settings = {
@@ -66,6 +66,35 @@ lspconfig.texlab.setup {
     }
 }
 
+lspconfig.ltex.setup {
+    filetypes = { "bib", "tex" },
+    settings = {
+        ltex = {
+            enabled = {"bibtex", "latex"}
+        }
+    },
+    on_attach = function(_, bufnr)
+        setup_mappings(bufnr)
+        require('ltex_extra').setup {}
+    end
+}
+
+require('lspconfig.configs').elvish = {
+    default_config = {
+        cmd = { 'elvish', '-lsp' },
+        filetypes = { 'elvish' },
+        root_dir = function(fname)
+            return lspconfig.util.find_git_ancestor(fname)
+        end,
+        settings = {}
+    },
+    on_attach = function(_, bufnr)
+        setup_mappings(bufnr)
+    end
+}
+
+lspconfig.elvish.setup {}
+
 local cmp = require("cmp")
 
 -- See https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#super-tab-like-mapping
@@ -75,9 +104,9 @@ function HasWordsBefore()
 end
 
 local has_words_before = function()
-  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+    if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
 end
 
 function HandleTabPress(fallback)
@@ -108,9 +137,11 @@ end
 
 local lspkind = require("lspkind")
 
+vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", { fg = "#6CC644" })
+
 cmp.setup {
     sources = cmp.config.sources {
-        -- { name = "copilot" },
+        { name = "supermaven" },
         { name = "nvim_lsp" },
         { name = "buffer" },
         { name = "path" },
@@ -129,8 +160,8 @@ cmp.setup {
             end
         end),
 
-        ['<S-Tab>'] = cmp.mapping(HandleShiftTabPress, {"i", "s"}),
-        ['<C-Space>'] = cmp.mapping(HandleCtrlSpacePress, {"i", "s"}),
+        ['<S-Tab>'] = cmp.mapping(HandleShiftTabPress, { "i", "s" }),
+        ['<C-Space>'] = cmp.mapping(HandleCtrlSpacePress, { "i", "s" }),
     },
     snippet = {
         expand = function(args)
@@ -140,9 +171,8 @@ cmp.setup {
     formatting = {
         format = lspkind.cmp_format {
             mode = 'symbol_text',
-            -- symbol_map = { Copilot = "" }
+            symbol_map = { Supermaven = "", },
         }
     }
 }
-
 
