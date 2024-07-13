@@ -2,7 +2,9 @@ return {
     {
         "vhyrro/luarocks.nvim",
         priority = 1000,
-        opts = {}
+        opts = {
+            rocks = { "magick" }
+        }
     },
     {
         "nvim-neorg/neorg",
@@ -36,6 +38,16 @@ return {
             require('neorg').setup {
                 load = {
                     ["core.defaults"] = {},
+                    ["core.neorgcmd"] = {},
+                    ["core.autocommands"] = {},
+                    ["core.highlights"] = {},
+                    ["core.integrations.nvim-cmp"] = {},
+                    ["core.integrations.image"] = {},
+                    ["core.integrations.treesitter"] = {},
+                    ["core.mode"] = {},
+                    ["core.queries.native"] = {},
+                    ["core.ui"] = {},
+                    ["core.latex.renderer"] = {},
                     ["core.concealer"] = {
                         config = {
                             icon_preset = 'diamond'
@@ -46,7 +58,6 @@ return {
                             engine = "nvim-cmp"
                         }
                     },
-                    ["core.integrations.nvim-cmp"] = {},
                     ["core.dirman"] = {
                         config = {
                             workspaces = {
@@ -62,8 +73,20 @@ return {
                             end
                         }
                     },
+                    ["core.presenter"] = {
+                        config = {
+                            zen_mode = "zen-mode"
+                        }
+                    }
                 }
             }
         end
+    },
+    {
+        "3rd/image.nvim",
+        dependencies = { "luarocks.nvim" },
+        opts = {
+            backend = "kitty"
+        }
     }
 }
