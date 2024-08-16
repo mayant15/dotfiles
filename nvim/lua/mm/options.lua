@@ -39,7 +39,7 @@ ops.mouse = 'a'
 -- Code folding, courtesy of tree-sitter
 ops.foldenable = false
 ops.foldmethod = 'expr'
-ops.foldexpr = 'nvim_treesitter#foldexpr()'
+ops.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 -- Default Tex filetype is Latex
 vim.g.tex_flavor = 'latex'

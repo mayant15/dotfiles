@@ -56,10 +56,10 @@ lspconfig.texlab.setup {
 }
 
 lspconfig.ltex.setup {
-    filetypes = { "bib", "tex" },
+    filetypes = { "bib", "tex", "markdown" },
     settings = {
         ltex = {
-            enabled = {"bibtex", "latex"}
+            enabled = {"bibtex", "latex", "markdown"}
         }
     },
     on_attach = function(_, bufnr)
