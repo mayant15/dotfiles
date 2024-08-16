@@ -1,6 +1,4 @@
 if status is-interactive
-  export JUST_UNSTABLE=1
-
   abbr -a gco git checkout
   abbr -a ga git add
   abbr -a gl "git log --oneline"
@@ -22,6 +20,7 @@ if status is-interactive
   fish_config theme choose "rose-pine"
 
   pyenv init - | source
+  eval (opam env)
 end
 
 # opam configuration
