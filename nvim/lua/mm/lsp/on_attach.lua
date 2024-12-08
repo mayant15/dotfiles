@@ -38,7 +38,7 @@ return {
         nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
         nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
         -- nmap('<leader>ds', withTheme(builtin.lsp_document_symbols), '[D]ocument [S]ymbols')
-        -- nmap('<leader>ws', withTheme(builtin.lsp_dynamic_workspace_symbols), '[W]orkspace [S]ymbols')
+        nmap('<leader>ws', withTheme(builtin.lsp_dynamic_workspace_symbols), '[W]orkspace [S]ymbols')
 
         -- See `:help K` for why this keymap
         nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
