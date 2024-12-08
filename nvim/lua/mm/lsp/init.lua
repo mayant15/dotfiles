@@ -130,11 +130,8 @@ end
 
 local lspkind = require("lspkind")
 
-vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", { fg = "#6CC644" })
-
 cmp.setup {
     sources = cmp.config.sources {
-        -- { name = "supermaven" },
         { name = "nvim_lsp" },
         { name = "buffer" },
         { name = "path" },
@@ -161,11 +158,4 @@ cmp.setup {
             require("luasnip").lsp_expand(args.body)
         end
     },
-    -- formatting = {
-    --     format = lspkind.cmp_format {
-    --         mode = 'symbol_text',
-    --         symbol_map = { Supermaven = "", },
-    --     }
-    -- }
 }
-
