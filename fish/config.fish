@@ -7,10 +7,10 @@ if status is-interactive
   abbr -a gs "git status"
   abbr -a lg "lazygit"
 
-  # abbr -a to "~/code/dotfiles/tmux-sessionizer"
-  # abbr -a tm "tmux"
-  # abbr -a tl "tmux ls"
-  # abbr -a ta "tmux attach"
+  abbr -a to "~/code/dotfiles/tmux-sessionizer"
+  abbr -a tm "tmux"
+  abbr -a tl "tmux ls"
+  abbr -a ta "tmux attach"
 
   abbr -a jo "j open"
   abbr -a jt "j tasks"
@@ -18,10 +18,4 @@ if status is-interactive
   abbr -a ja "j tasks todo"
 
   fish_config theme choose "rose-pine"
-
-  pyenv init - | source
-  eval (opam env)
 end
-
-# opam configuration
-source /home/mayantm/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
