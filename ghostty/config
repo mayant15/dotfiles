@@ -1,0 +1,4 @@
+theme = rose-pine
+font-size = 11.5
+shell-integration-features = no-cursor,no-sudo,title
+command = /usr/bin/fish
