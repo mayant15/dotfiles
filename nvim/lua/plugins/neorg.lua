@@ -35,6 +35,8 @@ return {
                     ["core.keybinds"] = {},
                     ["core.integrations.nvim-cmp"] = {},
                     ["core.integrations.treesitter"] = {},
+                    ["core.export"] = {},
+                    ["core.export.markdown"] = {},
                     ["core.concealer"] = {
                         config = {
                             icon_preset = 'diamond'

@@ -87,15 +87,4 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
     },
-    {
-        'stevearc/aerial.nvim',
-        opts = {},
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-tree/nvim-web-devicons"
-        },
-        keys = {
-            {"<leader>ds", mode = "n", ":AerialToggle<CR>"}
-        }
-    }
 }
