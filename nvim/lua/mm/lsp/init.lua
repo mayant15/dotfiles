@@ -11,16 +11,6 @@ defaults.capabilities = vim.tbl_deep_extend(
 
 local setup_mappings = require("mm.lsp.on_attach").setup_mappings
 
-local function default_server_handler(server)
-    require('lspconfig')[server].setup {
-        --  NOTE: We probably don't need this here if we call
-        -- setup_mappings on LspAttach event below
-        -- on_attach = function(client, bufnr)
-        --     setup_mappings(bufnr)
-        -- end
-    }
-end
-
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = "LSP Actions",
     callback = function(event)
@@ -30,22 +20,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 require("mason").setup {}
-require("mason-lspconfig").setup {
-    handlers = {
-        default_server_handler,
-    }
-}
+require("mason-lspconfig").setup {}
 
-lspconfig.zls.setup {
-    on_attach = function(_, bufnr)
-        setup_mappings(bufnr)
-    end
-}
+lspconfig.zls.setup {}
 
 lspconfig.texlab.setup {
-    on_attach = function(_, bufnr)
-        setup_mappings(bufnr)
-    end,
     settings = {
         texlab = {
             chktex = {
@@ -56,20 +35,15 @@ lspconfig.texlab.setup {
 }
 
 lspconfig.ltex.setup {
-    filetypes = { "bib", "tex", "markdown" },
+    filetypes = { "tex", "markdown" },
     settings = {
         ltex = {
-            enabled = {"bibtex", "latex", "markdown"},
             language = "en-CA",
             additionalRules = {
                 enablePickyRules = true,
             }
         }
     },
-    on_attach = function(_, bufnr)
-        setup_mappings(bufnr)
-        require('ltex_extra').setup {}
-    end
 }
 
 require('lspconfig.configs').elvish = {
@@ -81,9 +55,6 @@ require('lspconfig.configs').elvish = {
         end,
         settings = {}
     },
-    on_attach = function(_, bufnr)
-        setup_mappings(bufnr)
-    end
 }
 
 lspconfig.elvish.setup {}
