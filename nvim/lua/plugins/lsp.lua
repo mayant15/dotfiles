@@ -18,15 +18,7 @@ return {
         }
     },
     {
-        "folke/neodev.nvim",
-        opts = {}
-    },
-    {
         'j-hui/fidget.nvim',
         opts = {}
-    },
-    {
-        "onsails/lspkind.nvim",
-        config = false,
     }
 }

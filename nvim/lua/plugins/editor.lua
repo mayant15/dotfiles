@@ -87,4 +87,26 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
     },
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-tree/nvim-web-devicons'
+        },
+        opts = {
+            preset = 'obsidian',
+            heading = {
+                enabled = false,
+            },
+            code = {
+                enabled = false,
+            },
+            bullet = {
+                icons = {'-'},
+            },
+            indent = {
+                enabled = true,
+            }
+        },
+    }
 }

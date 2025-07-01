@@ -49,3 +49,8 @@ map('n', "'5", "mB", { desc = 'Set camera location 2' })
 map('n', "'6", "mC", { desc = 'Set camera location 3' })
 map('n', "'7", "mD", { desc = 'Set camera location 4' })
 
+-- Helpers
+local put_date = function()
+    vim.api.nvim_put({ os.date("%x") }, "c", true, true)
+end
+map('n', '<leader>dt', put_date, { desc = 'Put today\'s date at the cursor' })

@@ -37,6 +37,7 @@ return {
                     ["core.integrations.treesitter"] = {},
                     ["core.export"] = {},
                     ["core.export.markdown"] = {},
+                    ["core.summary"] = {},
                     ["core.concealer"] = {
                         config = {
                             icon_preset = 'diamond'
@@ -55,6 +56,14 @@ return {
                             use_popup = false,
                         }
                     },
+                    ["core.esupports.metagen"] = {
+                        config = {
+                            template = {
+                                { "title" },
+                                { "categories" }
+                            }
+                        }
+                    }
                 }
             }
         end
