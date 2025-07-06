@@ -1,7 +1,7 @@
 return {
     {
         "nvim-neorg/neorg",
-        lazy = false,
+        cmd = "Neorg",
         dependencies = {
             "nvim-cmp"
         },
@@ -27,45 +27,43 @@ return {
             },
             { "gO", mode = "n", ":Neorg toc left<CR>"}
         },
-        config = function()
-            require('neorg').setup {
-                load = {
-                    ["core.defaults"] = {},
-                    ["core.export"] = {},
-                    ["core.keybinds"] = {},
-                    ["core.integrations.nvim-cmp"] = {},
-                    ["core.integrations.treesitter"] = {},
-                    ["core.export"] = {},
-                    ["core.export.markdown"] = {},
-                    ["core.summary"] = {},
-                    ["core.concealer"] = {
-                        config = {
-                            icon_preset = 'diamond'
-                        }
-                    },
-                    ["core.completion"] = {
-                        config = {
-                            engine = "nvim-cmp"
-                        }
-                    },
-                    ["core.dirman"] = {
-                        config = {
-                            workspaces = {
-                                notes = "~/code/journal/data"
-                            },
-                            use_popup = false,
-                        }
-                    },
-                    ["core.esupports.metagen"] = {
-                        config = {
-                            template = {
-                                { "title" },
-                                { "categories" }
-                            }
+        opts = {
+            load = {
+                ["core.defaults"] = {},
+                ["core.export"] = {},
+                ["core.keybinds"] = {},
+                ["core.integrations.nvim-cmp"] = {},
+                ["core.integrations.treesitter"] = {},
+                ["core.export"] = {},
+                ["core.export.markdown"] = {},
+                ["core.summary"] = {},
+                ["core.concealer"] = {
+                    config = {
+                        icon_preset = 'diamond'
+                    }
+                },
+                ["core.completion"] = {
+                    config = {
+                        engine = "nvim-cmp"
+                    }
+                },
+                ["core.dirman"] = {
+                    config = {
+                        workspaces = {
+                            notes = "~/code/journal/data"
+                        },
+                        use_popup = false,
+                    }
+                },
+                ["core.esupports.metagen"] = {
+                    config = {
+                        template = {
+                            { "title" },
+                            { "categories" }
                         }
                     }
                 }
             }
-        end
+        }
     }
 }
