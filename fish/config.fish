@@ -14,6 +14,9 @@ if status is-interactive
 
   abbr -a jo "j open"
 
+  set -gx EDITOR (which vi)
+  set -gx VISUAL $EDITOR
+
   fish_config theme choose "rose-pine"
   mise activate fish | source
 end
