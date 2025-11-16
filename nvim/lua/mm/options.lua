@@ -12,6 +12,9 @@ ops.showmode = false
 -- ===============================================
 -- EDITING
 
+-- https://github.com/oven-sh/bun/issues/8520
+ops.backupcopy = 'yes'
+
 -- Encoding
 ops.enc = 'utf-8'
 ops.fenc = 'utf-8'

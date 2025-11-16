@@ -1,3 +1,11 @@
+local function kebab_to_title(s)
+    s = s:gsub("%-", " ")
+    s = s:gsub("(%a)([%w']*)", function(first, rest)
+        return first:upper() .. (rest or "")
+    end)
+    return s
+end
+
 return {
     {
         "nvim-neorg/neorg",
@@ -18,7 +26,9 @@ return {
                                 dirman.create_file('notes/' .. name, 'notes', {
                                     no_open = false,
                                     force = false,
-                                    metadata = {},
+                                    metadata = {
+                                        title = kebab_to_title(name),
+                                    },
                                 })
                             end
                         end
