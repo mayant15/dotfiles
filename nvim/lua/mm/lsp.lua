@@ -38,6 +38,18 @@ vim.lsp.config('ltex_plus', {
     },
 })
 
+vim.lsp.config('pylsp', {
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    maxLineLength = 100
+                }
+            }
+        }
+    }
+})
+
 vim.lsp.config('elvish', {
     cmd = { 'elvish', '-lsp' },
     filetypes = { 'elvish' },

@@ -45,7 +45,6 @@ return {
                 ["core.integrations.nvim-cmp"] = {},
                 ["core.integrations.treesitter"] = {},
                 ["core.export"] = {},
-                ["core.export.markdown"] = {},
                 ["core.summary"] = {},
                 ["core.concealer"] = {
                     config = {
