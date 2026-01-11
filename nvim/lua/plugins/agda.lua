@@ -1,6 +1,7 @@
 return {
     {
         'isovector/cornelis',
+        enabled = false,
         name = 'cornelis',
         ft = 'agda',
         build = 'stack install',

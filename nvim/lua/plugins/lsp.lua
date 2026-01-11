@@ -26,16 +26,4 @@ return {
         'j-hui/fidget.nvim',
         opts = {}
     },
-    {
-        "supermaven-inc/supermaven-nvim",
-        enabled = true,
-        opts = {
-            ignore_filetypes = {
-                tex = true,
-                norg = true,
-                markdown = true,
-                typst = true,
-            }
-        }
-    },
 }
