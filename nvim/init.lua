@@ -19,4 +19,5 @@ require("lazy").setup("plugins")
 
 require("mm.options")
 require("mm.mappings")
+require("mm.treesitter")
 
